@@ -505,7 +505,7 @@ footer {
     <a href="https://wa.me/525585480875?text=Hola%2C+me+interesan+sus+propiedades" target="_blank" class="btn-wa-nav">
       <img src="https://i.ibb.co/xq2TrpyZ/whatsapp.png" alt="WhatsApp" onerror="this.outerHTML='<svg viewBox=\'0 0 24 24\' fill=\'white\' width=\'18\' height=\'18\'><path d=\'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\'/></svg>'">
     </a>
-    <button class="btn-admin" onclick="abrirAdmin()">Admin</button>
+    <button class="btn-admin" id="btnNavAdmin" onclick="scrollAdmin()">Acceder con Google</button>
   </div>
   <div class="hamburger" onclick="toggleMenu()" id="hamburger">
     <span></span><span></span><span></span>
@@ -660,6 +660,124 @@ footer {
   <div class="footer-copy">© 2025 Punto B Inmobiliaria. Todos los derechos reservados.</div>
 </footer>
 
+
+<!-- ADMIN SECTION -->
+<section id="adminSection" style="display:none;background:var(--gris-bg);padding:80px 48px;min-height:80vh">
+  <div style="max-width:860px;margin:0 auto">
+
+    <!-- NOT LOGGED IN -->
+    <div id="adminLogin">
+      <div style="text-align:center;margin-bottom:48px">
+        <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--azul);margin-bottom:10px">Panel</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:700;color:var(--gris-oscuro)">Administrador</div>
+        <div style="width:40px;height:2px;background:var(--azul);margin:14px auto 0"></div>
+      </div>
+      <div style="max-width:420px;margin:0 auto;background:white;border-radius:12px;border:1px solid var(--gris-borde);padding:40px;box-shadow:0 4px 24px rgba(0,0,0,0.06)">
+        <div style="background:var(--azul-light);border-radius:6px;padding:14px 16px;font-size:13px;color:var(--azul);margin-bottom:28px;display:flex;gap:8px;align-items:flex-start">
+          🔒 Solo <strong>ventas@puntobinmobiliaria.com</strong> tiene acceso a este panel.
+        </div>
+        <div class="alert-box" id="loginError2"></div>
+        <div style="text-align:center;margin-bottom:24px">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--gris-oscuro);margin-bottom:4px">Bienvenido</div>
+          <div style="font-size:13px;color:var(--gris-med)">Inicia sesión con tu cuenta de Google</div>
+        </div>
+        <button id="googleLoginBtn" onclick="hacerLogin()" style="width:100%;display:flex;align-items:center;justify-content:center;gap:12px;padding:14px;border:1px solid var(--gris-borde);border-radius:6px;background:white;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--gris-oscuro);cursor:pointer;transition:box-shadow 0.2s;font-weight:500" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Iniciar sesión con Google
+        </button>
+      </div>
+    </div>
+
+    <!-- LOGGED IN PANEL -->
+    <div id="adminDashboard" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;flex-wrap:wrap;gap:16px">
+        <div>
+          <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--azul);margin-bottom:6px">Panel</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--gris-oscuro)">Administrador</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="font-size:13px;color:var(--gris-med)" id="adminUserEmail"></div>
+          <button onclick="cerrarSesion()" style="background:none;border:1px solid var(--gris-borde);padding:9px 18px;border-radius:4px;font-size:13px;color:var(--gris-texto);cursor:pointer;font-family:'DM Sans',sans-serif">Cerrar sesión</button>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="showTab('tabNueva2',this)">+ Nueva propiedad</button>
+        <button class="admin-tab" onclick="showTab('tabGestionar2',this)">Gestionar propiedades</button>
+      </div>
+
+      <!-- TAB NUEVA -->
+      <div id="tabNueva2" style="background:white;border-radius:12px;border:1px solid var(--gris-borde);padding:36px;margin-top:4px">
+        <div class="alert-box" id="pubAlerta2"></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tipo</label>
+            <select id="pubTipo2"><option value="Casa">Casa</option><option value="Departamento">Departamento</option></select>
+          </div>
+          <div class="form-group">
+            <label>Operación</label>
+            <select id="pubOp2"><option value="venta">Venta</option><option value="renta">Renta</option></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Título de la propiedad</label>
+          <input type="text" id="pubTitulo2" placeholder="Ej: Casa residencial en Lomas de Angelópolis">
+        </div>
+        <div class="form-group">
+          <label>Precio</label>
+          <input type="text" id="pubPrecio2" placeholder="Ej: $3,800,000 o $18,500/mes">
+        </div>
+        <div class="form-group">
+          <label>Ubicación</label>
+          <input type="text" id="pubUbicacion2" placeholder="Colonia, Ciudad">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Recámaras</label>
+            <input type="number" id="pubRecamaras2" placeholder="Ej: 3" min="0">
+          </div>
+          <div class="form-group">
+            <label>Baños</label>
+            <input type="number" id="pubBanos2" placeholder="Ej: 2" min="0">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Estacionamientos</label>
+            <input type="number" id="pubAutos2" placeholder="Ej: 2" min="0">
+          </div>
+          <div class="form-group">
+            <label>Superficie m²</label>
+            <input type="text" id="pubM22" placeholder="Ej: 180">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Descripción</label>
+          <textarea id="pubDesc2" placeholder="Describe las características, acabados, amenidades..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Imágenes (máx. 6)</label>
+          <div class="upload-area" onclick="document.getElementById('imgInput2').click()">
+            <input type="file" id="imgInput2" multiple accept="image/*" onchange="previsualizarImgs2(this)">
+            <div class="upload-icon">📷</div>
+            <div class="upload-text">Arrastra fotos aquí o haz clic para subir</div>
+            <div class="upload-sub">JPG, PNG, WEBP — Máx. 5MB por imagen</div>
+          </div>
+          <div class="upload-preview" id="imgPreview2"></div>
+          <div class="img-count" id="imgCount2"></div>
+        </div>
+        <button class="form-submit" id="pubBtn2" onclick="publicarPropiedad2()">Publicar propiedad</button>
+      </div>
+
+      <!-- TAB GESTIONAR -->
+      <div id="tabGestionar2" style="display:none;background:white;border-radius:12px;border:1px solid var(--gris-borde);padding:36px;margin-top:4px">
+        <div id="listaPropiedadesAdmin2" style="display:flex;flex-direction:column;gap:12px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WHATSAPP FLOAT -->
 <a href="https://wa.me/525585480875?text=Hola%2C+me+interesan+sus+propiedades" target="_blank" class="wa-float" title="Chatea con nosotros">
   <img src="https://i.ibb.co/xq2TrpyZ/whatsapp.png" alt="WhatsApp" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
@@ -691,7 +809,7 @@ footer {
           <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
           Iniciar sesión con Google
         </button>
-        <div style="font-size:11px;color:var(--gris-med);text-align:center;margin-top:16px">Solo <strong>ventas@puntobinmobiliaria.com</strong> tiene acceso</div>
+        <div style="font-size:11px;color:var(--gris-med);text-align:center;margin-top:16px">Solo <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7204171c0613013202071c061d101b1c1f1d101b1e1b13001b135c111d1f">[email&#160;protected]</a></strong> tiene acceso</div>
       </div>
 
       <!-- ADMIN PANEL (visible after login) -->
@@ -797,7 +915,7 @@ footer {
 </div>
 
 <!-- ====== FIREBASE + APP LOGIC ====== -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -832,6 +950,7 @@ window.addEventListener('load', () => {
 
 // ===== AUTH STATE =====
 onAuthStateChanged(auth, (user) => {
+  // Legacy modal
   if (user && user.email === ADMIN_EMAIL) {
     document.getElementById('loginPanel').style.display = 'none';
     document.getElementById('adminPanel').style.display = 'block';
@@ -841,6 +960,8 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById('loginPanel').style.display = 'block';
     document.getElementById('adminPanel').style.display = 'none';
   }
+  // New section
+  if (typeof window.actualizarUI === 'function') window.actualizarUI(user);
 });
 
 // ===== LOGIN GOOGLE =====
@@ -858,6 +979,8 @@ window.hacerLogin = async () => {
       await signOut(auth);
       err.textContent = 'Este correo no tiene acceso al panel de administrador.';
       err.className = 'alert-box show alert-error';
+      const err2 = document.getElementById('loginError2');
+      if (err2) { err2.textContent = 'Este correo no tiene acceso al panel de administrador.'; err2.className = 'alert-box show alert-error'; }
     }
   } catch (e) {
     if (e.code !== 'auth/popup-closed-by-user') {
@@ -1098,18 +1221,125 @@ window.eliminarPropiedad = async (id) => {
 window.abrirAdmin = () => document.getElementById('adminOverlay').classList.add('open');
 window.cerrarAdmin = () => document.getElementById('adminOverlay').classList.remove('open');
 
+// Scroll to admin section
+window.scrollAdmin = () => {
+  const sec = document.getElementById('adminSection');
+  sec.style.display = 'block';
+  setTimeout(() => sec.scrollIntoView({behavior:'smooth'}), 50);
+};
+
+// Update auth state for new section too
+window.actualizarUI = (user) => {
+  if (user && user.email === ADMIN_EMAIL) {
+    document.getElementById('adminLogin').style.display = 'none';
+    document.getElementById('adminDashboard').style.display = 'block';
+    document.getElementById('adminUserEmail').textContent = user.email;
+    document.getElementById('btnNavAdmin').textContent = 'Panel Admin';
+    cargarListaAdmin2();
+  } else {
+    document.getElementById('adminLogin').style.display = 'block';
+    document.getElementById('adminDashboard').style.display = 'none';
+    document.getElementById('btnNavAdmin').textContent = 'Acceder con Google';
+  }
+};
+
+// Publish from new panel
+let archivosImgs2 = [];
+window.previsualizarImgs2 = (input) => {
+  archivosImgs2 = Array.from(input.files).slice(0, 6);
+  const preview = document.getElementById('imgPreview2');
+  preview.innerHTML = '';
+  archivosImgs2.forEach(f => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.className = 'preview-img';
+      preview.appendChild(img);
+    };
+    reader.readAsDataURL(f);
+  });
+  document.getElementById('imgCount2').textContent = archivosImgs2.length + ' imagen(es) seleccionada(s)';
+};
+
+window.publicarPropiedad2 = async () => {
+  const btn = document.getElementById('pubBtn2');
+  const alerta = document.getElementById('pubAlerta2');
+  alerta.className = 'alert-box';
+  const titulo = document.getElementById('pubTitulo2').value.trim();
+  const precio = document.getElementById('pubPrecio2').value.trim();
+  const ubicacion = document.getElementById('pubUbicacion2').value.trim();
+  if (!titulo || !precio || !ubicacion) {
+    alerta.textContent = 'Por favor completa título, precio y ubicación.';
+    alerta.className = 'alert-box show alert-error'; return;
+  }
+  btn.innerHTML = '<span class="spinner"></span>Publicando...';
+  btn.disabled = true;
+  try {
+    const urlsImgs = [];
+    for (const archivo of archivosImgs2) {
+      const storageRef = ref(storage, 'propiedades/' + Date.now() + '_' + archivo.name);
+      await uploadBytes(storageRef, archivo);
+      urlsImgs.push(await getDownloadURL(storageRef));
+    }
+    await addDoc(collection(db, 'propiedades'), {
+      tipo: document.getElementById('pubTipo2').value,
+      operacion: document.getElementById('pubOp2').value,
+      titulo, precio, ubicacion,
+      recamaras: document.getElementById('pubRecamaras2').value || null,
+      banos: document.getElementById('pubBanos2').value || null,
+      autos: document.getElementById('pubAutos2').value || null,
+      m2: document.getElementById('pubM22').value || null,
+      descripcion: document.getElementById('pubDesc2').value.trim() || null,
+      imagenes: urlsImgs,
+      createdAt: serverTimestamp()
+    });
+    alerta.textContent = '✅ Propiedad publicada correctamente.';
+    alerta.className = 'alert-box show alert-success';
+    ['pubTitulo2','pubPrecio2','pubUbicacion2','pubRecamaras2','pubBanos2','pubAutos2','pubM22','pubDesc2'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('imgPreview2').innerHTML = '';
+    document.getElementById('imgCount2').textContent = '';
+    archivosImgs2 = [];
+    await cargarPropiedades();
+    cargarListaAdmin2();
+  } catch(e) {
+    alerta.textContent = 'Error: ' + e.message;
+    alerta.className = 'alert-box show alert-error';
+  } finally {
+    btn.innerHTML = 'Publicar propiedad';
+    btn.disabled = false;
+  }
+};
+
+async function cargarListaAdmin2() {
+  const lista = document.getElementById('listaPropiedadesAdmin2');
+  if (!lista) return;
+  lista.innerHTML = '<p style="font-size:13px;color:var(--gris-med)">Cargando...</p>';
+  try {
+    const q = query(collection(db, 'propiedades'), orderBy('createdAt', 'desc'));
+    const snap = await getDocs(q);
+    if (snap.empty) { lista.innerHTML = '<p style="font-size:13px;color:var(--gris-med)">No hay propiedades publicadas aún.</p>'; return; }
+    lista.innerHTML = snap.docs.map(d => {
+      const p = d.data();
+      return '<div style="background:var(--gris-bg);border-radius:7px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px"><div><div style="font-size:14px;font-weight:500;color:var(--gris-oscuro)">' + p.titulo + '</div><div style="font-size:12px;color:var(--gris-med);margin-top:4px">' + (p.precio||'') + ' · ' + (p.ubicacion||'—') + '</div></div><button onclick="eliminarPropiedad('' + d.id + '')" style="background:none;border:1px solid #e4e3df;padding:8px 16px;border-radius:4px;font-size:12px;color:#c04848;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif">Eliminar</button></div>';
+    }).join('');
+  } catch(e) { lista.innerHTML = '<p style="font-size:13px;color:#c04848">Error: ' + e.message + '</p>'; }
+}
+
 window.showTab = (tabId, btn) => {
-  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  const parent = btn.closest('.admin-tabs');
+  parent.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('tabNueva').style.display = tabId === 'tabNueva' ? 'block' : 'none';
-  document.getElementById('tabGestionar').style.display = tabId === 'tabGestionar' ? 'block' : 'none';
-  if (tabId === 'tabGestionar') cargarListaAdmin();
+  if (tabId === 'tabNueva' || tabId === 'tabGestionar') {
+    document.getElementById('tabNueva').style.display = tabId === 'tabNueva' ? 'block' : 'none';
+    document.getElementById('tabGestionar').style.display = tabId === 'tabGestionar' ? 'block' : 'none';
+    if (tabId === 'tabGestionar') cargarListaAdmin();
+  } else {
+    document.getElementById('tabNueva2').style.display = tabId === 'tabNueva2' ? 'block' : 'none';
+    document.getElementById('tabGestionar2').style.display = tabId === 'tabGestionar2' ? 'block' : 'none';
+    if (tabId === 'tabGestionar2') cargarListaAdmin2();
+  }
 };
 
 window.toggleMenu = () => {
-  document.getElementById('mobileMenu').classList.toggle('open');
-};
-
-// Close modals on outside click
-document.getElementById('adminOverlay').addEventListener('click', e => { if(e.target.id==='adminOverlay') cerrarAdmin(); });
-document.getElementById('detailOverlay').addEventListener('click', e => { i
+  document.getElementById('mobileMenu').classList.toggle('open'
