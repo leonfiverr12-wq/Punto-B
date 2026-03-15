@@ -674,7 +674,7 @@ footer {
       </div>
       <div style="max-width:420px;margin:0 auto;background:white;border-radius:12px;border:1px solid var(--gris-borde);padding:40px;box-shadow:0 4px 24px rgba(0,0,0,0.06)">
         <div style="background:var(--azul-light);border-radius:6px;padding:14px 16px;font-size:13px;color:var(--azul);margin-bottom:28px;display:flex;gap:8px;align-items:flex-start">
-          🔒 Solo <strong>ventas@puntobinmobiliaria.com</strong> tiene acceso a este panel.
+          🔒 Solo <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3147545f4550427141445f455e53585f5c5e53585d58504358501f525e5c">[email&#160;protected]</a></strong> tiene acceso a este panel.
         </div>
         <div class="alert-box" id="loginError2"></div>
         <div style="text-align:center;margin-bottom:24px">
@@ -915,7 +915,14 @@ footer {
 </div>
 
 <!-- ====== FIREBASE + APP LOGIC ====== -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Failsafe loader - hides loader no matter what happens with Firebase
+setTimeout(function() {
+  var l = document.getElementById('loader');
+  if (l) l.classList.add('hidden');
+}, 2500);
+</script>
+<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -945,8 +952,13 @@ let archivosImgs = [];
 
 // ===== LOADER =====
 window.addEventListener('load', () => {
-  setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 1400);
+  setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 1200);
 });
+// Failsafe: always hide loader after 3 seconds no matter what
+setTimeout(() => { 
+  const l = document.getElementById('loader');
+  if (l) l.classList.add('hidden');
+}, 3000);
 
 // ===== AUTH STATE =====
 onAuthStateChanged(auth, (user) => {
@@ -1336,10 +1348,4 @@ window.showTab = (tabId, btn) => {
     if (tabId === 'tabGestionar') cargarListaAdmin();
   } else {
     document.getElementById('tabNueva2').style.display = tabId === 'tabNueva2' ? 'block' : 'none';
-    document.getElementById('tabGestionar2').style.display = tabId === 'tabGestionar2' ? 'block' : 'none';
-    if (tabId === 'tabGestionar2') cargarListaAdmin2();
-  }
-};
-
-window.toggleMenu = () => {
-  document.getElementById('mobileMenu').classList.toggle('open'
+    document.getElemen
