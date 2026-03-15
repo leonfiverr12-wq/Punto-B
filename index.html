@@ -622,13 +622,13 @@ footer {
   <h2>¿Tienes alguna pregunta?</h2>
   <p>Nuestro equipo está listo para ayudarte a encontrar tu propiedad ideal</p>
   <div class="contact-cards">
-    <a href="mailto:ventas@puntobinmobiliaria.com" class="contact-card">
+    <a href="/cdn-cgi/l/email-protection#36405358425745764643584259545f585b59545f5a5f57445f571855595b" class="contact-card">
       <div class="contact-card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       </div>
       <div class="contact-card-text">
         <div class="contact-card-lbl">Correo</div>
-        <div class="contact-card-val">ventas@puntobinmobiliaria.com</div>
+        <div class="contact-card-val"><span class="__cf_email__" data-cfemail="ddabb8b3a9bcae9dada8b3a9b2bfb4b3b0b2bfb4b1b4bcafb4bcf3beb2b0">[email&#160;protected]</span></div>
       </div>
     </a>
     <a href="https://wa.me/525585480875?text=Hola%2C+me+interesan+sus+propiedades" target="_blank" class="contact-card wa">
@@ -655,7 +655,7 @@ footer {
     <a href="#propiedades">Propiedades</a>
     <a href="#servicios">Servicios</a>
     <a href="#contacto">Contacto</a>
-    <a href="mailto:ventas@puntobinmobiliaria.com">ventas@puntobinmobiliaria.com</a>
+    <a href="/cdn-cgi/l/email-protection#295f4c475d485a69595c475d464b404744464b404540485b4048074a4644"><span class="__cf_email__" data-cfemail="d7a1b2b9a3b6a497a7a2b9a3b8b5beb9bab8b5bebbbeb6a5beb6f9b4b8ba">[email&#160;protected]</span></a>
   </div>
   <div class="footer-copy">© 2025 Punto B Inmobiliaria. Todos los derechos reservados.</div>
 </footer>
@@ -797,7 +797,7 @@ footer {
 </div>
 
 <!-- ====== FIREBASE + APP LOGIC ====== -->
-<script type="module">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -808,12 +808,12 @@ import { getStorage, ref, uploadBytes, getDownloadURL }
 
 // ===== CONFIG =====
 const firebaseConfig = {
-  apiKey: "AIzaSyCsR-RyTshILAnEzkkj5aRvD9NbT15qKNQ",
-  authDomain: "punto-b-fa839.firebaseapp.com",
-  projectId: "punto-b-fa839",
-  storageBucket: "punto-b-fa839.firebasestorage.app",
-  messagingSenderId: "947959551658",
-  appId: "1:947959551658:web:008520e5afc6e234a8e2d3"
+  apiKey: "AIzaSyB5VzaKGF2Hw4jQh2O5FDnO1aTkh-UqQlc",
+  authDomain: "punto-b-1787f.firebaseapp.com",
+  projectId: "punto-b-1787f",
+  storageBucket: "punto-b-1787f.firebasestorage.app",
+  messagingSenderId: "997703760492",
+  appId: "1:997703760492:web:f496c65bc81442e212f649"
 };
 const ADMIN_EMAIL = "ventas@puntobinmobiliaria.com";
 
@@ -1112,16 +1112,4 @@ window.toggleMenu = () => {
 
 // Close modals on outside click
 document.getElementById('adminOverlay').addEventListener('click', e => { if(e.target.id==='adminOverlay') cerrarAdmin(); });
-document.getElementById('detailOverlay').addEventListener('click', e => { if(e.target.id==='detailOverlay') cerrarDetalle(); });
-
-// Close mobile menu on outside click
-document.addEventListener('click', e => {
-  const menu = document.getElementById('mobileMenu');
-  const hamburger = document.getElementById('hamburger');
-  if (menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
-    menu.classList.remove('open');
-  }
-});
-</script>
-</body>
-</html>
+document.getElementById('detailOverlay').addEventListener('click', e => { i
