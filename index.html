@@ -622,18 +622,18 @@ footer {
   <h2>¿Tienes alguna pregunta?</h2>
   <p>Nuestro equipo está listo para ayudarte a encontrar tu propiedad ideal</p>
   <div class="contact-cards">
-    <a href="/cdn-cgi/l/email-protection#36405358425745764643584259545f585b59545f5a5f57445f571855595b" class="contact-card">
+    <div class="contact-card" style="cursor:pointer" id="emailCard" onclick="var e='ventas'+'@'+'puntobinmobiliaria.com';window.location.href='mail'+'to:'+e">
       <div class="contact-card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       </div>
       <div class="contact-card-text">
         <div class="contact-card-lbl">Correo</div>
-        <div class="contact-card-val"><span class="__cf_email__" data-cfemail="ddabb8b3a9bcae9dada8b3a9b2bfb4b3b0b2bfb4b1b4bcafb4bcf3beb2b0">[email&#160;protected]</span></div>
+        <div class="contact-card-val" id="emailVal">ventas&#64;puntobinmobiliaria.com</div>
       </div>
-    </a>
+    </div>
     <a href="https://wa.me/525585480875?text=Hola%2C+me+interesan+sus+propiedades" target="_blank" class="contact-card wa">
       <div class="contact-card-icon">
-        <img src="https://i.ibb.co/xq2TrpyZ/whatsapp.png" alt="WhatsApp" onerror="this.outerHTML='<svg viewBox=\'0 0 24 24\' fill=\'white\' width=\'22\' height=\'22\'><path d=\'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\'/></svg>'">
+        <img src="https://i.ibb.co/xq2TrpyZ/whatsapp.png" alt="WhatsApp" onerror="this.outerHTML='<svg viewBox=&quot;0 0 24 24&quot; fill=&quot;white&quot; width=&quot;22&quot; height=&quot;22&quot;><path d=&quot;M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z&quot;/></svg>'">
       </div>
       <div class="contact-card-text">
         <div class="contact-card-lbl">WhatsApp</div>
@@ -655,7 +655,7 @@ footer {
     <a href="#propiedades">Propiedades</a>
     <a href="#servicios">Servicios</a>
     <a href="#contacto">Contacto</a>
-    <a href="/cdn-cgi/l/email-protection#295f4c475d485a69595c475d464b404744464b404540485b4048074a4644"><span class="__cf_email__" data-cfemail="d7a1b2b9a3b6a497a7a2b9a3b8b5beb9bab8b5bebbbeb6a5beb6f9b4b8ba">[email&#160;protected]</span></a>
+    <span id="footerEmail" style="color:rgba(255,255,255,0.4);font-size:12px;cursor:pointer" onclick="var e='ventas'+'@'+'puntobinmobiliaria.com';window.location.href='mail'+'to:'+e">ventas&#64;puntobinmobiliaria.com</span>
   </div>
   <div class="footer-copy">© 2025 Punto B Inmobiliaria. Todos los derechos reservados.</div>
 </footer>
@@ -922,22 +922,24 @@ setTimeout(function() {
   if (l) l.classList.add('hidden');
 }, 2500);
 
-// Global functions needed before module loads
+// Global function stubs - overwritten by Firebase module once loaded
 function scrollAdmin() {
   var sec = document.getElementById('adminSection');
-  if (sec) {
-    sec.style.display = 'block';
-    setTimeout(function() { sec.scrollIntoView({behavior:'smooth'}); }, 50);
-  }
+  if (sec) { sec.style.display = 'block'; setTimeout(function() { sec.scrollIntoView({behavior:'smooth'}); }, 50); }
 }
-function abrirAdmin() {
-  var ov = document.getElementById('adminOverlay');
-  if (ov) ov.classList.add('open');
-}
-function cerrarAdmin() {
-  var ov = document.getElementById('adminOverlay');
-  if (ov) ov.classList.remove('open');
-}
+function abrirAdmin() { var ov = document.getElementById('adminOverlay'); if (ov) ov.classList.add('open'); }
+function cerrarAdmin() { var ov = document.getElementById('adminOverlay'); if (ov) ov.classList.remove('open'); }
+function hacerLogin() { setTimeout(function() { if (window._hacerLogin) window._hacerLogin(); else alert('Cargando... intenta en un segundo.'); }, 100); }
+function cerrarSesion() { if (window._cerrarSesion) window._cerrarSesion(); }
+function verDetalle(id) { if (window._verDetalle) window._verDetalle(id); }
+function cerrarDetalle() { var ov = document.getElementById('detailOverlay'); if (ov) ov.classList.remove('open'); }
+function filtrarPropiedades() { if (window._filtrarPropiedades) window._filtrarPropiedades(); }
+function publicarPropiedad() { if (window._publicarPropiedad) window._publicarPropiedad(); }
+function publicarPropiedad2() { if (window._publicarPropiedad2) window._publicarPropiedad2(); }
+function previsualizarImgs(i) { if (window._previsualizarImgs) window._previsualizarImgs(i); }
+function previsualizarImgs2(i) { if (window._previsualizarImgs2) window._previsualizarImgs2(i); }
+function showTab(t,b) { if (window._showTab) window._showTab(t,b); }
+function eliminarPropiedad(id) { if (window._eliminarPropiedad) window._eliminarPropiedad(id); }
 </script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -990,11 +992,11 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById('adminPanel').style.display = 'none';
   }
   // New section
-  if (typeof window.actualizarUI === 'function') window.actualizarUI(user);
+  if (typeof window._actualizarUI === 'function') window._actualizarUI(user);
 });
 
 // ===== LOGIN GOOGLE =====
-window.hacerLogin = async () => {
+window._hacerLogin = async () => {
   const btn = document.getElementById('loginBtn');
   const err = document.getElementById('loginError');
   err.className = 'alert-box';
@@ -1022,7 +1024,7 @@ window.hacerLogin = async () => {
   }
 };
 
-window.cerrarSesion = async () => {
+window._cerrarSesion = async () => {
   await signOut(auth);
   cerrarAdmin();
 };
@@ -1078,7 +1080,7 @@ function renderPropiedades(lista) {
 }
 
 // ===== FILTROS =====
-window.filtrarPropiedades = () => {
+window._filtrarPropiedades = () => {
   const tipo = document.getElementById('filtroTipo').value.toLowerCase();
   const texto = document.getElementById('filtroTexto').value.toLowerCase();
   const op = document.getElementById('filtroOp').value.toLowerCase();
@@ -1092,7 +1094,7 @@ window.filtrarPropiedades = () => {
 };
 
 // ===== VER DETALLE =====
-window.verDetalle = (id) => {
+window._verDetalle = (id) => {
   const p = todasPropiedades.find(x => x.id === id);
   if (!p) return;
   document.getElementById('detailModalTitle').textContent = p.tipo || 'Propiedad';
@@ -1126,7 +1128,7 @@ window.verDetalle = (id) => {
 window.cerrarDetalle = () => document.getElementById('detailOverlay').classList.remove('open');
 
 // ===== PUBLICAR PROPIEDAD =====
-window.previsualizarImgs = (input) => {
+window._previsualizarImgs = (input) => {
   archivosImgs = Array.from(input.files).slice(0, 6);
   const preview = document.getElementById('imgPreview');
   preview.innerHTML = '';
@@ -1143,7 +1145,7 @@ window.previsualizarImgs = (input) => {
   document.getElementById('imgCount').textContent = `${archivosImgs.length} imagen(es) seleccionada(s)`;
 };
 
-window.publicarPropiedad = async () => {
+window._publicarPropiedad = async () => {
   const btn = document.getElementById('pubBtn');
   const alerta = document.getElementById('pubAlerta');
   alerta.className = 'alert-box';
@@ -1235,7 +1237,7 @@ async function cargarListaAdmin() {
   }
 }
 
-window.eliminarPropiedad = async (id) => {
+window._eliminarPropiedad = async (id) => {
   if (!confirm('¿Eliminar esta propiedad? Esta acción no se puede deshacer.')) return;
   try {
     await deleteDoc(doc(db, 'propiedades', id));
@@ -1251,14 +1253,14 @@ window.abrirAdmin = () => document.getElementById('adminOverlay').classList.add(
 window.cerrarAdmin = () => document.getElementById('adminOverlay').classList.remove('open');
 
 // Scroll to admin section
-window.scrollAdmin = () => {
+window._scrollAdmin = () => {
   const sec = document.getElementById('adminSection');
   sec.style.display = 'block';
   setTimeout(() => sec.scrollIntoView({behavior:'smooth'}), 50);
 };
 
 // Update auth state for new section too
-window.actualizarUI = (user) => {
+window._actualizarUI = (user) => {
   if (user && user.email === ADMIN_EMAIL) {
     document.getElementById('adminLogin').style.display = 'none';
     document.getElementById('adminDashboard').style.display = 'block';
@@ -1274,7 +1276,7 @@ window.actualizarUI = (user) => {
 
 // Publish from new panel
 let archivosImgs2 = [];
-window.previsualizarImgs2 = (input) => {
+window._previsualizarImgs2 = (input) => {
   archivosImgs2 = Array.from(input.files).slice(0, 6);
   const preview = document.getElementById('imgPreview2');
   preview.innerHTML = '';
@@ -1291,7 +1293,7 @@ window.previsualizarImgs2 = (input) => {
   document.getElementById('imgCount2').textContent = archivosImgs2.length + ' imagen(es) seleccionada(s)';
 };
 
-window.publicarPropiedad2 = async () => {
+window._publicarPropiedad2 = async () => {
   const btn = document.getElementById('pubBtn2');
   const alerta = document.getElementById('pubAlerta2');
   alerta.className = 'alert-box';
@@ -1355,7 +1357,7 @@ async function cargarListaAdmin2() {
   } catch(e) { lista.innerHTML = '<p style="font-size:13px;color:#c04848">Error: ' + e.message + '</p>'; }
 }
 
-window.showTab = (tabId, btn) => {
+window._showTab = (tabId, btn) => {
   const parent = btn.closest('.admin-tabs');
   parent.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
