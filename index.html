@@ -916,11 +916,28 @@ footer {
 
 <!-- ====== FIREBASE + APP LOGIC ====== -->
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Failsafe loader - hides loader no matter what happens with Firebase
+// Failsafe loader
 setTimeout(function() {
   var l = document.getElementById('loader');
   if (l) l.classList.add('hidden');
 }, 2500);
+
+// Global functions needed before module loads
+function scrollAdmin() {
+  var sec = document.getElementById('adminSection');
+  if (sec) {
+    sec.style.display = 'block';
+    setTimeout(function() { sec.scrollIntoView({behavior:'smooth'}); }, 50);
+  }
+}
+function abrirAdmin() {
+  var ov = document.getElementById('adminOverlay');
+  if (ov) ov.classList.add('open');
+}
+function cerrarAdmin() {
+  var ov = document.getElementById('adminOverlay');
+  if (ov) ov.classList.remove('open');
+}
 </script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
