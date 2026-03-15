@@ -60,14 +60,16 @@ nav {
   padding: 0 48px;
   display: flex; align-items: center; justify-content: space-between;
   height: 72px;
+  overflow: visible;
 }
-.logo-wrap { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-/* FIX: Logo 10x más grande */
-.logo-img { width: 480px; height: 120px; object-fit: contain; }
+.logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+/* Logo que encaja bien en la navbar: altura contenida, ancho proporcional */
+.logo-img { height: 52px; width: auto; max-width: 180px; object-fit: contain; display: block; }
 .logo-fallback {
-  width: 120px; height: 120px; background: var(--azul); border-radius: 6px;
+  width: 44px; height: 44px; background: var(--azul); border-radius: 6px;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 700; color: white;
+  font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: white;
+  flex-shrink: 0;
 }
 .brand { display: flex; flex-direction: column; }
 .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--gris-oscuro); line-height: 1; }
@@ -76,15 +78,19 @@ nav {
 .nav-links a { font-size: 13px; color: var(--gris-texto); text-decoration: none; letter-spacing: 0.2px; transition: color 0.2s; }
 .nav-links a:hover { color: var(--azul); }
 .nav-right { display: flex; align-items: center; gap: 12px; }
+/* FIX: botón WhatsApp nav — sin fondo negro, solo verde */
 .btn-wa-nav {
-  display: flex; align-items: center; gap: 7px;
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
   background: var(--verde-wa); color: white; border: none;
-  padding: 9px 18px; border-radius: 4px; font-size: 13px;
+  border-radius: 50%; font-size: 13px;
   cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500;
-  text-decoration: none; transition: opacity 0.2s;
+  text-decoration: none; transition: opacity 0.2s, transform 0.2s;
+  overflow: hidden;
 }
-.btn-wa-nav:hover { opacity: 0.88; }
-.btn-wa-nav img { width: 18px; height: 18px; }
+.btn-wa-nav:hover { opacity: 0.88; transform: scale(1.05); }
+.btn-wa-nav img { width: 22px; height: 22px; object-fit: contain; display: block; }
+.btn-wa-nav svg { display: block; }
 .btn-admin {
   background: var(--azul); color: white; border: none;
   padding: 9px 20px; border-radius: 4px; font-size: 13px;
@@ -475,8 +481,7 @@ footer {
   .footer-links { justify-content: center; }
   .form-row { grid-template-columns: 1fr; }
   .props-grid { grid-template-columns: 1fr; }
-  /* FIX logo responsive */
-  .logo-img { width: 200px; height: 80px; }
+  .logo-img { height: 40px; width: auto; max-width: 130px; }
 }
 </style>
 </head>
@@ -633,7 +638,7 @@ footer {
       </div>
       <div class="contact-card-text">
         <div class="contact-card-lbl">Correo</div>
-        <div class="contact-card-val">ventas@puntobinmobiliaria.com</div>
+        <div class="contact-card-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="087e6d667c697b48787d667c676a616665676a616461697a6169266b6765">[email&#160;protected]</a></div>
       </div>
     </div>
     <a href="https://wa.me/525585480875?text=Hola%2C+me+interesan+sus+propiedades" target="_blank" class="contact-card wa">
@@ -660,7 +665,7 @@ footer {
     <a href="#propiedades">Propiedades</a>
     <a href="#servicios">Servicios</a>
     <a href="#contacto">Contacto</a>
-    <span style="color:rgba(255,255,255,0.4);font-size:12px;cursor:pointer" onclick="window.location.href='mailto:ventas@puntobinmobiliaria.com'">ventas@puntobinmobiliaria.com</span>
+    <span style="color:rgba(255,255,255,0.4);font-size:12px;cursor:pointer" onclick="window.location.href='mailto:ventas@puntobinmobiliaria.com'"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d8aebdb6acb9ab98a8adb6acb7bab1b6b5b7bab1b4b1b9aab1b9f6bbb7b5">[email&#160;protected]</a></span>
   </div>
   <div class="footer-copy">© 2025 Punto B Inmobiliaria. Todos los derechos reservados.</div>
 </footer>
@@ -678,7 +683,7 @@ footer {
       </div>
       <div style="max-width:420px;margin:0 auto;background:white;border-radius:12px;border:1px solid var(--gris-borde);padding:40px;box-shadow:0 4px 24px rgba(0,0,0,0.06)">
         <div style="background:var(--azul-light);border-radius:6px;padding:14px 16px;font-size:13px;color:var(--azul);margin-bottom:28px;display:flex;gap:8px;align-items:flex-start">
-          🔒 Solo <strong>ventas@puntobinmobiliaria.com</strong> tiene acceso a este panel.
+          🔒 Solo el administrador tiene acceso a este panel.
         </div>
         <div class="alert-box" id="loginError2"></div>
         <div style="text-align:center;margin-bottom:24px">
@@ -788,7 +793,7 @@ footer {
           <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
           Iniciar sesión con Google
         </button>
-        <div style="font-size:11px;color:var(--gris-med);text-align:center;margin-top:16px">Solo <strong>ventas@puntobinmobiliaria.com</strong> tiene acceso</div>
+        <div style="font-size:11px;color:var(--gris-med);text-align:center;margin-top:16px">Acceso exclusivo para administrador</div>
       </div>
 
       <div id="adminPanel" style="display:none">
@@ -852,7 +857,7 @@ footer {
 </div>
 
 <!-- ====== HELPERS (non-module, always available) ====== -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Failsafe loader
 setTimeout(function() {
   var l = document.getElementById('loader');
@@ -1287,13 +1292,4 @@ async function cargarListaAdmin2() {
     if (snap.empty) { lista.innerHTML = '<p style="font-size:13px;color:var(--gris-med)">No hay propiedades publicadas aún.</p>'; return; }
     lista.innerHTML = snap.docs.map(d => {
       const p = d.data();
-      return '<div style="background:var(--gris-bg);border-radius:7px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px"><div><div style="font-size:14px;font-weight:500;color:var(--gris-oscuro)">' + p.titulo + '</div><div style="font-size:12px;color:var(--gris-med);margin-top:4px">' + (p.precio||'') + ' · ' + (p.ubicacion||'—') + '</div></div><button onclick="eliminarPropiedad(\'' + d.id + '\')" style="background:none;border:1px solid #e4e3df;padding:8px 16px;border-radius:4px;font-size:12px;color:#c04848;cursor:pointer;white-space:nowrap;font-family:\'DM Sans\',sans-serif">Eliminar</button></div>';
-    }).join('');
-  } catch(e) {
-    lista.innerHTML = '<p style="font-size:13px;color:#c04848">Error: ' + e.message + '</p>'; }
-}
-window._cargarListaAdmin2 = cargarListaAdmin2;
-
-</script>
-</body>
-</html>
+      return '<div style="background:var(--gris-bg);border-radius:7px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px"><div><div style="font-size:14px;font-weight:500;color:var
