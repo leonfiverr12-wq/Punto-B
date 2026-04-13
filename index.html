@@ -63,7 +63,6 @@ nav {
   overflow: visible;
 }
 .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-/* CAMBIO 1: logo ajustado a 480×120px con height:52px */
 .logo-img { height: 52px; width: auto; max-width: 480px; object-fit: contain; display: block; }
 .logo-fallback {
   width: 44px; height: 44px; background: var(--azul); border-radius: 6px;
@@ -160,7 +159,6 @@ nav {
 .btn-hero-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
 @keyframes fadeUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
 
-/* Hero scroll indicator */
 .scroll-hint {
   position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 8px;
@@ -235,25 +233,78 @@ nav {
   background: white; border-radius: 10px; overflow: hidden;
   border: 1px solid var(--gris-borde);
   transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
 }
 .prop-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(26,58,92,0.13); }
-.prop-img-wrap { position: relative; height: 220px; overflow: hidden; background: var(--gris-bg); }
-.prop-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-.prop-card:hover .prop-img-wrap img { transform: scale(1.04); }
+
+/* ===== CARD CAROUSEL ===== */
+.prop-img-wrap {
+  position: relative; height: 220px; overflow: hidden; background: var(--gris-bg);
+}
+.card-carousel {
+  display: flex; height: 100%; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.card-carousel-slide {
+  min-width: 100%; height: 100%; flex-shrink: 0;
+}
+.card-carousel-slide img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.4s;
+  display: block;
+}
+.prop-card:hover .card-carousel-slide img { transform: scale(1.04); }
+
+/* Card arrow buttons */
+.card-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.92); border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 10;
+  opacity: 0; transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.card-arrow svg { width: 14px; height: 14px; stroke: var(--azul); stroke-width: 2.5; }
+.card-arrow.prev { left: 10px; }
+.card-arrow.next { right: 10px; }
+.prop-img-wrap:hover .card-arrow { opacity: 1; }
+.card-arrow:hover { transform: translateY(-50%) scale(1.1); background: white; }
+
+/* Card dots */
+.card-dots {
+  position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 5px; z-index: 10;
+}
+.card-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.55);
+  transition: background 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.card-dot.active { background: white; transform: scale(1.2); }
+
+/* Card image counter badge */
+.card-img-count {
+  position: absolute; bottom: 10px; right: 10px;
+  background: rgba(0,0,0,0.55); color: white;
+  font-size: 11px; padding: 3px 8px; border-radius: 10px;
+  z-index: 10; display: none;
+}
+
 .prop-img-placeholder {
   width: 100%; height: 100%; display: flex; flex-direction: column;
   align-items: center; justify-content: center; color: var(--gris-med);
 }
 .prop-img-placeholder svg { width: 40px; height: 40px; margin-bottom: 8px; opacity: 0.4; }
 .prop-img-placeholder span { font-size: 12px; }
+
 .prop-badge {
   position: absolute; top: 14px; left: 14px;
   background: var(--azul); color: white; font-size: 10px; letter-spacing: 1px;
   text-transform: uppercase; padding: 5px 12px; border-radius: 3px;
+  z-index: 5;
 }
 .prop-badge.renta { background: #2C8A6E; }
-.prop-body { padding: 22px; }
+.prop-body { padding: 22px; cursor: pointer; }
 .prop-price { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: var(--azul); margin-bottom: 6px; }
 .prop-title { font-size: 14px; font-weight: 500; color: var(--gris-oscuro); margin-bottom: 5px; line-height: 1.4; }
 .prop-loc { font-size: 12px; color: var(--gris-med); margin-bottom: 16px; display: flex; align-items: center; gap: 4px; }
@@ -306,7 +357,6 @@ nav {
 }
 .contact-card:hover { background: rgba(255,255,255,0.14); }
 .contact-card-icon { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.contact-card-icon img { width: 22px; height: 22px; object-fit: contain; }
 .contact-card-icon svg { width: 20px; height: 20px; }
 .contact-card-text { text-align: left; }
 .contact-card-lbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 3px; }
@@ -337,7 +387,6 @@ footer {
   text-decoration: none; overflow: hidden; background: var(--verde-wa);
 }
 .wa-float:hover { transform: scale(1.08); }
-.wa-float img { width: 34px; height: 34px; object-fit: contain; }
 .wa-float svg { width: 30px; height: 30px; }
 
 /* ===== MODAL BASE ===== */
@@ -365,6 +414,59 @@ footer {
 .close-modal { background: none; border: none; color: white; font-size: 22px; cursor: pointer; line-height: 1; padding: 4px; }
 .modal-body { padding: 32px; }
 
+/* ===== DETAIL MODAL CAROUSEL ===== */
+.detail-carousel-wrap {
+  position: relative; overflow: hidden; background: var(--negro);
+  border-radius: 12px 12px 0 0;
+}
+.detail-carousel {
+  display: flex; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.detail-carousel-slide {
+  min-width: 100%; height: 300px; flex-shrink: 0;
+}
+.detail-carousel-slide img {
+  width: 100%; height: 300px; object-fit: cover; display: block;
+}
+/* Arrow buttons — detail modal */
+.detail-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,0.88); border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 10;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  transition: background 0.2s, transform 0.2s;
+}
+.detail-arrow svg { width: 16px; height: 16px; stroke: var(--azul); stroke-width: 2.5; }
+.detail-arrow.prev { left: 14px; }
+.detail-arrow.next { right: 14px; }
+.detail-arrow:hover { background: white; transform: translateY(-50%) scale(1.08); }
+/* Dots — detail modal */
+.detail-dots {
+  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 6px; z-index: 10;
+}
+.detail-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(255,255,255,0.5); cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.detail-dot.active { background: white; transform: scale(1.25); }
+/* Counter */
+.detail-counter {
+  position: absolute; top: 14px; right: 14px;
+  background: rgba(0,0,0,0.55); color: white;
+  font-size: 12px; padding: 4px 10px; border-radius: 12px; z-index: 10;
+}
+/* No image placeholder */
+.detail-no-img {
+  height: 300px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; color: var(--gris-med);
+  background: var(--gris-bg); border-radius: 12px 12px 0 0;
+}
+.detail-no-img svg { width: 48px; height: 48px; margin-bottom: 10px; opacity: 0.3; }
+
 /* ===== FORMS ===== */
 .form-group { margin-bottom: 20px; }
 .form-group label { display: block; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--gris-med); margin-bottom: 7px; }
@@ -391,7 +493,6 @@ footer {
 .form-submit:hover { background: var(--azul-hover); }
 .form-submit:disabled { background: var(--gris-med); cursor: not-allowed; }
 
-/* Upload area */
 .upload-area {
   border: 2px dashed var(--gris-borde); border-radius: 8px;
   padding: 28px 20px; text-align: center; cursor: pointer;
@@ -405,7 +506,6 @@ footer {
 .upload-preview { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .preview-img { width: 72px; height: 72px; object-fit: cover; border-radius: 5px; border: 1px solid var(--gris-borde); }
 
-/* Alert/Info boxes */
 .info-box {
   background: var(--azul-light); border-radius: 6px; padding: 14px 16px;
   font-size: 13px; color: var(--azul); margin-bottom: 22px;
@@ -419,12 +519,8 @@ footer {
 .alert-success { background: #E8F6EF; color: #1A6B45; }
 .alert-error { background: #FEE8E8; color: #8B2020; }
 .divider { height: 1px; background: var(--gris-borde); margin: 24px 0; }
-.small-link { font-size: 12px; color: var(--gris-med); text-align: center; margin-top: 12px; }
-.small-link a { color: var(--azul); cursor: pointer; }
 
-/* ===== PROPERTY DETAIL MODAL ===== */
-.detail-img { width: 100%; height: 260px; object-fit: cover; }
-.detail-img-placeholder { width: 100%; height: 260px; background: var(--gris-bg); display: flex; align-items: center; justify-content: center; color: var(--gris-med); flex-direction: column; gap: 8px; }
+/* ===== PROPERTY DETAIL BODY ===== */
 .detail-price { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; color: var(--azul); margin-bottom: 6px; }
 .detail-title { font-size: 18px; font-weight: 500; color: var(--gris-oscuro); margin-bottom: 8px; }
 .detail-loc { font-size: 13px; color: var(--gris-med); margin-bottom: 18px; }
@@ -447,11 +543,8 @@ footer {
   margin-bottom: -1px; transition: color 0.2s;
 }
 .admin-tab.active { color: var(--azul); border-bottom-color: var(--azul); font-weight: 500; }
-
-/* Image counter in upload */
 .img-count { font-size: 12px; color: var(--gris-med); margin-top: 8px; text-align: center; }
 
-/* Loading spinner */
 .spinner {
   width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3);
   border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite;
@@ -481,6 +574,9 @@ footer {
   .form-row { grid-template-columns: 1fr; }
   .props-grid { grid-template-columns: 1fr; }
   .logo-img { height: 40px; width: auto; max-width: 130px; }
+  /* Show arrows always on mobile */
+  .card-arrow { opacity: 1 !important; }
+  .detail-arrow { width: 36px; height: 36px; }
 }
 </style>
 </head>
@@ -511,8 +607,7 @@ footer {
   </ul>
   <div class="nav-right">
     <a href="https://wa.me/525585480875?text=Hola%2C+me+interesan+sus+propiedades" target="_blank" class="btn-wa-nav">
-      <img src="https://i.ibb.co/xq2TrpyZ/whatsapp.png" alt="WhatsApp"
-           onerror="this.outerHTML='<svg viewBox=\'0 0 24 24\' fill=\'white\' width=\'18\' height=\'18\'><path d=\'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\'/></svg>'">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
     <button class="btn-admin" id="btnNavAdmin" onclick="scrollAdmin()">Acceder con Google</button>
   </div>
@@ -598,30 +693,22 @@ footer {
   </div>
   <div class="servicios-grid">
     <div class="servicio-card">
-      <div class="serv-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      </div>
+      <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
       <div class="serv-title">Venta de Inmuebles</div>
       <div class="serv-desc">Acompañamos todo el proceso de compraventa con asesoría legal y financiera personalizada.</div>
     </div>
     <div class="servicio-card">
-      <div class="serv-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-      </div>
+      <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
       <div class="serv-title">Renta de Propiedades</div>
       <div class="serv-desc">Encontramos el inmueble ideal para rentar, con contratos seguros y procesos ágiles.</div>
     </div>
     <div class="servicio-card">
-      <div class="serv-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      </div>
+      <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       <div class="serv-title">Búsqueda Personalizada</div>
       <div class="serv-desc">Te ayudamos a encontrar exactamente la propiedad que necesitas según tu presupuesto y estilo de vida.</div>
     </div>
     <div class="servicio-card">
-      <div class="serv-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-      </div>
+      <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
       <div class="serv-title">Asesoría Legal</div>
       <div class="serv-desc">Contrato, escrituración y trámites con respaldo de expertos para que tu inversión esté protegida.</div>
     </div>
@@ -680,11 +767,9 @@ footer {
   <div class="footer-copy">© 2025 Punto B Inmobiliaria. Todos los derechos reservados.</div>
 </footer>
 
-
 <!-- ADMIN SECTION -->
 <section id="adminSection" style="display:none;background:var(--gris-bg);padding:80px 48px;min-height:80vh">
   <div style="max-width:860px;margin:0 auto">
-    <!-- NOT LOGGED IN -->
     <div id="adminLogin">
       <div style="text-align:center;margin-bottom:48px">
         <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--azul);margin-bottom:10px">Panel</div>
@@ -707,12 +792,10 @@ footer {
           <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
           Iniciar sesión con Google
         </button>
-        <!-- CAMBIO 2: nota de pie en caja admin section -->
         <div style="font-size:11px;color:var(--gris-med);text-align:center;margin-top:16px">Solo el administrador tiene acceso</div>
       </div>
     </div>
 
-    <!-- LOGGED IN PANEL -->
     <div id="adminDashboard" style="display:none">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;flex-wrap:wrap;gap:16px">
         <div>
@@ -724,29 +807,15 @@ footer {
           <button onclick="cerrarSesion()" style="background:none;border:1px solid var(--gris-borde);padding:9px 18px;border-radius:4px;font-size:13px;color:var(--gris-texto);cursor:pointer;font-family:'DM Sans',sans-serif">Cerrar sesión</button>
         </div>
       </div>
-
       <div class="admin-tabs">
         <button class="admin-tab active" onclick="showTab('tabNueva2',this)">+ Nueva propiedad</button>
         <button class="admin-tab" onclick="showTab('tabGestionar2',this)">Gestionar propiedades</button>
       </div>
-
-      <!-- TAB NUEVA -->
       <div id="tabNueva2" style="background:white;border-radius:12px;border:1px solid var(--gris-borde);padding:36px;margin-top:4px">
         <div class="alert-box" id="pubAlerta2"></div>
         <div class="form-row">
-          <div class="form-group">
-            <label>Tipo</label>
-            <select id="pubTipo2">
-              <option value="Casa">Casa</option>
-              <option value="Departamento">Departamento</option>
-              <option value="Terreno">Terreno</option>
-              <option value="Bodega">Bodega</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Operación</label>
-            <select id="pubOp2"><option value="venta">Venta</option><option value="renta">Renta</option></select>
-          </div>
+          <div class="form-group"><label>Tipo</label><select id="pubTipo2"><option value="Casa">Casa</option><option value="Departamento">Departamento</option><option value="Terreno">Terreno</option><option value="Bodega">Bodega</option></select></div>
+          <div class="form-group"><label>Operación</label><select id="pubOp2"><option value="venta">Venta</option><option value="renta">Renta</option></select></div>
         </div>
         <div class="form-group"><label>Título de la propiedad</label><input type="text" id="pubTitulo2" placeholder="Ej: Casa residencial en Lomas de Angelópolis"></div>
         <div class="form-group"><label>Precio</label><input type="text" id="pubPrecio2" placeholder="Ej: $3,800,000 o $18,500/mes"></div>
@@ -773,8 +842,6 @@ footer {
         </div>
         <button class="form-submit" id="pubBtn2" onclick="publicarPropiedad2()">Publicar propiedad</button>
       </div>
-
-      <!-- TAB GESTIONAR -->
       <div id="tabGestionar2" style="display:none;background:white;border-radius:12px;border:1px solid var(--gris-borde);padding:36px;margin-top:4px">
         <div id="listaPropiedadesAdmin2" style="display:flex;flex-direction:column;gap:12px"></div>
       </div>
@@ -810,10 +877,8 @@ footer {
           <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
           Iniciar sesión con Google
         </button>
-        <!-- CAMBIO 3: nota de pie en modal login -->
         <div style="font-size:11px;color:var(--gris-med);text-align:center;margin-top:16px">Solo el administrador tiene acceso</div>
       </div>
-
       <div id="adminPanel" style="display:none">
         <div class="admin-tabs">
           <button class="admin-tab active" onclick="showTab('tabNueva',this)">+ Nueva propiedad</button>
@@ -822,15 +887,7 @@ footer {
         <div id="tabNueva">
           <div class="alert-box" id="pubAlerta"></div>
           <div class="form-row">
-            <div class="form-group">
-              <label>Tipo</label>
-              <select id="pubTipo">
-                <option value="Casa">Casa</option>
-                <option value="Departamento">Departamento</option>
-                <option value="Terreno">Terreno</option>
-                <option value="Bodega">Bodega</option>
-              </select>
-            </div>
+            <div class="form-group"><label>Tipo</label><select id="pubTipo"><option value="Casa">Casa</option><option value="Departamento">Departamento</option><option value="Terreno">Terreno</option><option value="Bodega">Bodega</option></select></div>
             <div class="form-group"><label>Operación</label><select id="pubOp"><option value="venta">Venta</option><option value="renta">Renta</option></select></div>
           </div>
           <div class="form-group"><label>Título de la propiedad</label><input type="text" id="pubTitulo" placeholder="Ej: Casa residencial en Lomas de Angelópolis"></div>
@@ -893,36 +950,21 @@ function toggleMenu() {
   var m = document.getElementById('mobileMenu');
   m.classList.toggle('open');
 }
-
 function scrollAdmin() {
   var sec = document.getElementById('adminSection');
   if (sec) { sec.style.display = 'block'; setTimeout(function() { sec.scrollIntoView({behavior:'smooth'}); }, 50); }
 }
-function abrirAdmin() {
-  document.getElementById('adminOverlay').classList.add('open');
-}
-function cerrarAdmin() {
-  document.getElementById('adminOverlay').classList.remove('open');
-}
-
+function abrirAdmin() { document.getElementById('adminOverlay').classList.add('open'); }
+function cerrarAdmin() { document.getElementById('adminOverlay').classList.remove('open'); }
 function hacerLogin() {
-  if (window._hacerLogin) {
-    window._hacerLogin();
-  } else {
-    var attempts = 0;
-    var wait = setInterval(function() {
-      attempts++;
-      if (window._hacerLogin) {
-        clearInterval(wait);
-        window._hacerLogin();
-      } else if (attempts > 100) {
-        clearInterval(wait);
-        alert('Error al cargar el módulo de autenticación. Recarga la página.');
-      }
-    }, 100);
-  }
+  if (window._hacerLogin) { window._hacerLogin(); return; }
+  var attempts = 0;
+  var wait = setInterval(function() {
+    attempts++;
+    if (window._hacerLogin) { clearInterval(wait); window._hacerLogin(); }
+    else if (attempts > 100) { clearInterval(wait); alert('Error al cargar el módulo de autenticación. Recarga la página.'); }
+  }, 100);
 }
-
 function cerrarSesion() { if (window._cerrarSesion) window._cerrarSesion(); }
 function verDetalle(id) { if (window._verDetalle) window._verDetalle(id); }
 function cerrarDetalle() { document.getElementById('detailOverlay').classList.remove('open'); }
@@ -937,7 +979,6 @@ function showTab(tabId, btn) {
   var parent = btn.closest('.admin-tabs');
   parent.querySelectorAll('.admin-tab').forEach(function(t) { t.classList.remove('active'); });
   btn.classList.add('active');
-
   var isSection = (tabId === 'tabNueva2' || tabId === 'tabGestionar2');
   if (isSection) {
     document.getElementById('tabNueva2').style.display = (tabId === 'tabNueva2') ? 'block' : 'none';
@@ -948,6 +989,63 @@ function showTab(tabId, btn) {
     document.getElementById('tabGestionar').style.display = (tabId === 'tabGestionar') ? 'block' : 'none';
     if (tabId === 'tabGestionar' && window._cargarListaAdmin) window._cargarListaAdmin();
   }
+}
+
+/* ====== CAROUSEL HELPERS ====== */
+
+// Card carousel — state tracked per card by cardId
+var cardStates = {};
+
+function initCardCarousel(cardEl, imgs, cardId) {
+  if (!imgs || imgs.length <= 1) return;
+  cardStates[cardId] = 0;
+
+  var wrap = cardEl.querySelector('.card-carousel');
+  var dots = cardEl.querySelectorAll('.card-dot');
+  var countEl = cardEl.querySelector('.card-img-count');
+  if (countEl) { countEl.style.display = 'block'; countEl.textContent = '1 / ' + imgs.length; }
+
+  function goTo(idx) {
+    if (idx < 0) idx = imgs.length - 1;
+    if (idx >= imgs.length) idx = 0;
+    cardStates[cardId] = idx;
+    wrap.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+    if (countEl) countEl.textContent = (idx + 1) + ' / ' + imgs.length;
+  }
+
+  var prevBtn = cardEl.querySelector('.card-arrow.prev');
+  var nextBtn = cardEl.querySelector('.card-arrow.next');
+  if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(cardStates[cardId] - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(cardStates[cardId] + 1); });
+  dots.forEach(function(d, i) { d.addEventListener('click', function(e) { e.stopPropagation(); goTo(i); }); });
+}
+
+// Detail carousel
+var detailIdx = 0;
+var detailImgs = [];
+
+function initDetailCarousel(imgs) {
+  detailImgs = imgs || [];
+  detailIdx = 0;
+  var carousel = document.getElementById('detailCarousel');
+  var dots = document.querySelectorAll('.detail-dot');
+  var counter = document.getElementById('detailCounter');
+
+  function goTo(idx) {
+    if (idx < 0) idx = detailImgs.length - 1;
+    if (idx >= detailImgs.length) idx = 0;
+    detailIdx = idx;
+    carousel.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+    if (counter) counter.textContent = (idx + 1) + ' / ' + detailImgs.length;
+  }
+
+  var prevBtn = document.getElementById('detailPrev');
+  var nextBtn = document.getElementById('detailNext');
+  if (prevBtn) prevBtn.onclick = function() { goTo(detailIdx - 1); };
+  if (nextBtn) nextBtn.onclick = function() { goTo(detailIdx + 1); };
+  dots.forEach(function(d, i) { d.onclick = function() { goTo(i); }; });
 }
 </script>
 
@@ -1010,11 +1108,8 @@ window._hacerLogin = async function() {
   const err2 = document.getElementById('loginError2');
   if (err) err.className = 'alert-box';
   if (err2) err2.className = 'alert-box';
-
   const googleSVG = '<svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Iniciar sesión con Google';
-
   btns.forEach(b => { if (b) { b.innerHTML = '<span class="spinner"></span>Conectando...'; b.disabled = true; } });
-
   try {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({ login_hint: ADMIN_EMAIL });
@@ -1035,10 +1130,7 @@ window._hacerLogin = async function() {
   }
 };
 
-window._cerrarSesion = async () => {
-  await signOut(auth);
-  cerrarAdmin();
-};
+window._cerrarSesion = async () => { await signOut(auth); cerrarAdmin(); };
 
 async function cargarPropiedades() {
   const grid = document.getElementById('propsGrid');
@@ -1054,6 +1146,30 @@ async function cargarPropiedades() {
 }
 cargarPropiedades();
 
+function buildCardCarouselHTML(imgs, p) {
+  if (!imgs || imgs.length === 0) {
+    return `<div class="prop-img-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span>Sin imagen</span></div>`;
+  }
+  if (imgs.length === 1) {
+    return `<div class="card-carousel"><div class="card-carousel-slide"><img src="${imgs[0]}" alt="${p.titulo}" loading="lazy"></div></div>`;
+  }
+  // Multiple images: build carousel
+  const slides = imgs.map(u => `<div class="card-carousel-slide"><img src="${u}" alt="${p.titulo}" loading="lazy"></div>`).join('');
+  const dots = imgs.map((_, i) => `<div class="card-dot${i === 0 ? ' active' : ''}"></div>`).join('');
+  return `
+    <div class="card-carousel">${slides}</div>
+    <button class="card-arrow prev" aria-label="Anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="card-arrow next" aria-label="Siguiente">
+      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="card-dots">${dots}</div>
+    <div class="card-img-count"></div>`;
+}
+
 function renderPropiedades(lista) {
   const grid = document.getElementById('propsGrid');
   if (!lista.length) {
@@ -1062,17 +1178,14 @@ function renderPropiedades(lista) {
       <p>No hay propiedades disponibles aún.</p></div>`;
     return;
   }
+
   grid.innerHTML = lista.map(p => `
-    <div class="prop-card" onclick="verDetalle('${p.id}')">
+    <div class="prop-card" data-id="${p.id}">
       <div class="prop-img-wrap">
-        ${p.imagenes && p.imagenes[0]
-          ? `<img src="${p.imagenes[0]}" alt="${p.titulo}" loading="lazy">`
-          : `<div class="prop-img-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span>Sin imagen</span></div>`}
+        ${buildCardCarouselHTML(p.imagenes, p)}
         <div class="prop-badge ${p.operacion === 'renta' ? 'renta' : ''}">${p.operacion === 'renta' ? 'En Renta' : 'En Venta'}</div>
       </div>
-      <div class="prop-body">
+      <div class="prop-body" onclick="verDetalle('${p.id}')">
         <div class="prop-price">${p.precio || '—'}</div>
         <div class="prop-title">${p.titulo}</div>
         <div class="prop-loc">📍 ${p.ubicacion || ''}</div>
@@ -1084,6 +1197,14 @@ function renderPropiedades(lista) {
         <button class="btn-ver">Ver detalles</button>
       </div>
     </div>`).join('');
+
+  // Initialize carousels after render
+  lista.forEach(p => {
+    if (p.imagenes && p.imagenes.length > 1) {
+      const cardEl = grid.querySelector('[data-id="' + p.id + '"]');
+      if (cardEl) initCardCarousel(cardEl, p.imagenes, p.id);
+    }
+  });
 }
 
 window._filtrarPropiedades = () => {
@@ -1105,10 +1226,37 @@ window._verDetalle = (id) => {
   document.getElementById('detailModalTitle').textContent = p.tipo || 'Propiedad';
   const imgs = p.imagenes || [];
   const waMsg = encodeURIComponent('Hola, me interesa la propiedad: ' + p.titulo + ' (' + p.precio + '). ¿Podrían darme más información?');
+
+  // Build carousel or placeholder
+  let imgSection = '';
+  if (imgs.length === 0) {
+    imgSection = `<div class="detail-no-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span>Sin imágenes</span></div>`;
+  } else if (imgs.length === 1) {
+    imgSection = `<div class="detail-carousel-wrap">
+      <div class="detail-carousel" id="detailCarousel">
+        <div class="detail-carousel-slide"><img src="${imgs[0]}" alt="${p.titulo}"></div>
+      </div>
+    </div>`;
+  } else {
+    const slides = imgs.map(u => `<div class="detail-carousel-slide"><img src="${u}" alt="${p.titulo}"></div>`).join('');
+    const dots = imgs.map((_, i) => `<div class="detail-dot${i === 0 ? ' active' : ''}"></div>`).join('');
+    imgSection = `<div class="detail-carousel-wrap">
+      <div class="detail-carousel" id="detailCarousel">${slides}</div>
+      <button class="detail-arrow prev" id="detailPrev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="detail-arrow next" id="detailNext" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <div class="detail-dots">${dots}</div>
+      <div class="detail-counter" id="detailCounter">1 / ${imgs.length}</div>
+    </div>`;
+  }
+
   document.getElementById('detailContent').innerHTML = `
-    ${imgs.length
-      ? `<div style="overflow:hidden;max-height:280px"><img src="${imgs[0]}" style="width:100%;height:260px;object-fit:cover" alt="${p.titulo}"></div>`
-      : `<div class="detail-img-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Sin imagen</span></div>`}
+    ${imgSection}
     <div style="padding:24px">
       <div class="detail-price">${p.precio || '—'}</div>
       <div class="detail-title">${p.titulo}</div>
@@ -1122,13 +1270,17 @@ window._verDetalle = (id) => {
         ${p.autos ? `<div class="detail-feat">🚗 ${p.autos} Autos</div>` : ''}
         ${p.m2 ? `<div class="detail-feat">📐 ${p.m2} m²</div>` : ''}
       </div>
-      ${imgs.length > 1 ? '<div style="display:flex;gap:8px;margin-bottom:20px;overflow-x:auto;padding-bottom:4px">' + imgs.slice(1).map(u => '<img src="' + u + '" style="width:80px;height:60px;object-fit:cover;border-radius:5px;flex-shrink:0;border:1px solid var(--gris-borde)">').join('') + '</div>' : ''}
       <a href="https://wa.me/525585480875?text=${waMsg}" target="_blank" class="btn-wa-detail">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Consultar por WhatsApp
       </a>
     </div>`;
+
   document.getElementById('detailOverlay').classList.add('open');
+  // Init detail carousel after DOM update
+  if (imgs.length > 1) {
+    setTimeout(() => initDetailCarousel(imgs), 50);
+  }
 };
 
 window._previsualizarImgs = (input) => {
@@ -1139,8 +1291,7 @@ window._previsualizarImgs = (input) => {
     const reader = new FileReader();
     reader.onload = e => {
       const img = document.createElement('img');
-      img.src = e.target.result;
-      img.className = 'preview-img';
+      img.src = e.target.result; img.className = 'preview-img';
       preview.appendChild(img);
     };
     reader.readAsDataURL(f);
@@ -1185,14 +1336,11 @@ window._publicarPropiedad = async () => {
     document.getElementById('imgPreview').innerHTML = '';
     document.getElementById('imgCount').textContent = '';
     archivosImgs = [];
-    await cargarPropiedades();
-    cargarListaAdmin();
+    await cargarPropiedades(); cargarListaAdmin();
   } catch(e) {
     alerta.textContent = 'Error al publicar: ' + e.message;
     alerta.className = 'alert-box show alert-error';
-  } finally {
-    btn.innerHTML = 'Publicar propiedad'; btn.disabled = false;
-  }
+  } finally { btn.innerHTML = 'Publicar propiedad'; btn.disabled = false; }
 };
 
 async function cargarListaAdmin() {
@@ -1207,9 +1355,7 @@ async function cargarListaAdmin() {
       const p = d.data();
       return '<div style="background:var(--gris-bg);border-radius:7px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px"><div><div style="font-size:13px;font-weight:500;color:var(--gris-oscuro)">' + p.titulo + '</div><div style="font-size:12px;color:var(--gris-med);margin-top:3px">' + (p.precio||'') + ' · ' + (p.ubicacion||'—') + '</div></div><button onclick="eliminarPropiedad(\'' + d.id + '\')" style="background:none;border:1px solid #e4e3df;padding:7px 14px;border-radius:4px;font-size:12px;color:#c04848;cursor:pointer;white-space:nowrap;font-family:\'DM Sans\',sans-serif">Eliminar</button></div>';
     }).join('');
-  } catch(e) {
-    lista.innerHTML = '<p style="font-size:13px;color:#c04848">Error: ' + e.message + '</p>';
-  }
+  } catch(e) { lista.innerHTML = '<p style="font-size:13px;color:#c04848">Error: ' + e.message + '</p>'; }
 }
 window._cargarListaAdmin = cargarListaAdmin;
 
@@ -1217,12 +1363,8 @@ window._eliminarPropiedad = async (id) => {
   if (!confirm('¿Eliminar esta propiedad? Esta acción no se puede deshacer.')) return;
   try {
     await deleteDoc(doc(db, 'propiedades', id));
-    await cargarPropiedades();
-    cargarListaAdmin();
-    cargarListaAdmin2();
-  } catch(e) {
-    alert('Error al eliminar: ' + e.message);
-  }
+    await cargarPropiedades(); cargarListaAdmin(); cargarListaAdmin2();
+  } catch(e) { alert('Error al eliminar: ' + e.message); }
 };
 
 window._previsualizarImgs2 = (input) => {
@@ -1233,8 +1375,7 @@ window._previsualizarImgs2 = (input) => {
     const reader = new FileReader();
     reader.onload = e => {
       const img = document.createElement('img');
-      img.src = e.target.result;
-      img.className = 'preview-img';
+      img.src = e.target.result; img.className = 'preview-img';
       preview.appendChild(img);
     };
     reader.readAsDataURL(f);
@@ -1279,14 +1420,11 @@ window._publicarPropiedad2 = async () => {
     document.getElementById('imgPreview2').innerHTML = '';
     document.getElementById('imgCount2').textContent = '';
     archivosImgs2 = [];
-    await cargarPropiedades();
-    cargarListaAdmin2();
+    await cargarPropiedades(); cargarListaAdmin2();
   } catch(e) {
     alerta.textContent = 'Error: ' + e.message;
     alerta.className = 'alert-box show alert-error';
-  } finally {
-    btn.innerHTML = 'Publicar propiedad'; btn.disabled = false;
-  }
+  } finally { btn.innerHTML = 'Publicar propiedad'; btn.disabled = false; }
 };
 
 async function cargarListaAdmin2() {
@@ -1301,12 +1439,9 @@ async function cargarListaAdmin2() {
       const p = d.data();
       return '<div style="background:var(--gris-bg);border-radius:7px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px"><div><div style="font-size:14px;font-weight:500;color:var(--gris-oscuro)">' + p.titulo + '</div><div style="font-size:12px;color:var(--gris-med);margin-top:3px">' + (p.precio||'') + ' · ' + (p.ubicacion||'—') + '</div></div><button onclick="eliminarPropiedad(\'' + d.id + '\')" style="background:none;border:1px solid #e4e3df;padding:7px 14px;border-radius:4px;font-size:12px;color:#c04848;cursor:pointer;white-space:nowrap;font-family:\'DM Sans\',sans-serif">Eliminar</button></div>';
     }).join('');
-  } catch(e) {
-    lista.innerHTML = '<p style="font-size:13px;color:#c04848">Error: ' + e.message + '</p>';
-  }
+  } catch(e) { lista.innerHTML = '<p style="font-size:13px;color:#c04848">Error: ' + e.message + '</p>'; }
 }
 window._cargarListaAdmin2 = cargarListaAdmin2;
 </script>
-
 </body>
 </html>
